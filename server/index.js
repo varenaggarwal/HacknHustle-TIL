@@ -3,8 +3,9 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const fs = require('fs');
 const { getRecentTweets, getTweetsCount, getTopTrends } = require('./lib/tweetsController');
-const { concatTweets2Text } = require('./lib/tweetsService');
+const { concatTweets2Text, processAndGather, saveFile } = require('./lib/service');
 const { findCategory } = require('./lib/openApiController');
+const DIR_DATASET_PATH = "dataset/";
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -51,7 +52,7 @@ app.get("/tweets/predict/category/:query", async (req, res) => {
   const query = encodeURIComponent(req.params.query);
   const { data: tweetData } = await getRecentTweets({query});
   // console.log(data);
-  const text = concatTweets2Text(tweetData);
+  const { text } = concatTweets2Text({data :tweetData , query:query});
   const { data: oiData } = await findCategory({text});
   // console.log(oiData.label);
 
@@ -60,6 +61,35 @@ app.get("/tweets/predict/category/:query", async (req, res) => {
   
   // Respond, using json, the type object
   res.json(oiData);
+});
+
+app.get("/tweets/setall/category/:file", (req, res) => {
+  if(!req.params.file) {
+    res.json({"error":"Please provide filename!"})
+  }
+
+  const filepath = DIR_DATASET_PATH + encodeURIComponent(req.params.file);
+  
+  fs.readFile(filepath, 'utf8', async (err, data) => {
+    // If there was an error, throw it
+    if(err){
+      res.json({"error": err.message})
+    };
+
+    // Or set filedata to the json
+    let filedata = JSON.parse(data);
+
+    console.time('-------setcat');
+    if(filedata && filedata[0] && filedata[0].trends) {
+      console.log("filepath:-----" + filepath);
+
+      filedata = await processAndGather({ filedata });
+
+      await saveFile({filepath , filedata});
+      res.json("!!!File written successfully!!!! All category");
+      console.timeEnd('-------setcat');
+    }
+  });
 });
 
 /* App Listen */

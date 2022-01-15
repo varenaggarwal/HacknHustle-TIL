@@ -14,6 +14,7 @@ instanceAxios.defaults.headers.post['Content-Type'] = 'application/json';
  * @returns 
  */
  const findCategory = async({text})=>{
+    text = JSON.stringify(text);
     const raw = JSON.stringify({
         "file": "file-kLGPYNxnfPF7X9ZyjizAYX3y",
         "search_model": "ada",
