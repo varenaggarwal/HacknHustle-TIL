@@ -13,3 +13,5 @@
     background: -webkit-linear-gradient( 45deg ,#303f9f,#7b1fa2)!important;
     background: linear-gradient( 45deg ,#303f9f,#7b1fa2)!important;
 }
+.twitter-embed {width: 400px; height: 300px; overflow: hidden;}
+.twitslide {display: flex; justify-content: space-around;}

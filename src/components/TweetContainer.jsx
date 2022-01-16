@@ -3,12 +3,9 @@ import { TwitterTweetEmbed } from "react-twitter-embed";
 
 const TweetContainer = ({ id }) => {
   return (
-    <div className="twitterContainer">
-      {console.log("changed")}
       <div className="twitter-embed">
-        <TwitterTweetEmbed tweetId={id} />
+        <TwitterTweetEmbed tweetId={id} options={{conversation: "none", cards:"hidden" }}/>
       </div>
-    </div>
   );
 };
 

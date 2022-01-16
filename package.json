@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/material": "^5.2.8",
+    "@mui/styles": "^5.2.3",
     "@progress/kendo-drawing": "1.16.1",
     "@progress/kendo-licensing": "1.2.1",
     "@progress/kendo-react-animation": "4.13.0",
@@ -25,6 +30,7 @@
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-material-ui-carousel": "^3.1.1",
     "react-scripts": "^5.0.0",
     "react-twitter-embed": "^3.0.3",
     "web-vitals": "^2.1.3"

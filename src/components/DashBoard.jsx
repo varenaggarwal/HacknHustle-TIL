@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Carousel from 'react-material-ui-carousel';
 import { getDatafromServer } from "../serverRequest";
 import "./../css/dashboard.css";
 import "./../css/modal.css";
@@ -11,15 +12,22 @@ const DashBoard = () => {
   const [show, setShow] = useState({ show: false });
   const [activeHashtag, setActiveHashtag] = useState({ active: null });
   const [state, setState] = useState({});
+  const [flag, setFlag] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       const data = await getDatafromServer();
-      setState(data.data[0]);
-      setActiveHashtag({ active: data.data[0].trends[0] });
+      setState(data?.data[0]);
+      setActiveHashtag({ active: data?.data[0].trends[0] });
     }
     fetchData();
   }, []);
+
+  useEffect(()=> {
+    if(!flag){
+      setFlag(true);
+    }
+  }, [flag]);
 
   const showModal = () => {
     setShow({ show: true });
@@ -29,10 +37,34 @@ const DashBoard = () => {
     setShow({ show: false });
   };
 
+  const Slider = (slides) => {
+    const dataArr = slides.slides;
+    console.log(dataArr.length);
+    const sliderItems = dataArr.length > 2 ? 2 : dataArr.length;
+    console.log(sliderItems);
+    const items = [];
+    for (let i = 0; i < dataArr.length; i += sliderItems) {
+      if (i % sliderItems === 0) {
+        items.push(
+          <div className="twitslide">
+            {dataArr.slice(i, i + sliderItems).map((da, index) => {
+              return <TweetContainer id={da} />;
+            })}
+          </div>
+        );
+      }
+    }
+    return (
+      <Carousel animation="slide" indicators={false}  navButtonsAlwaysVisible={true} autoPlay={false} cycleNavigation timeout={300}>
+        {items}
+      </Carousel>
+    );
+  }
+
   return (
     <main>
       <Header />
-      <div class="content-wrapper-before purple45"></div>
+      <div className="content-wrapper-before purple45"></div>
       <div className="open_btn">
         {/* <button className="button-3d " type="button" onClick={showModal}>
       Open<img src="open-icon.png" ></img>
@@ -51,30 +83,25 @@ const DashBoard = () => {
         <div className="trending-info-sec">
           <div className="trending-twitter-list">
             <ul>
-              {state.hasOwnProperty("trends") &&
-                state?.trends?.map((item, index) => {
-                  return (
-                    <li
-                      onClick={() => {
-                        setActiveHashtag({ active: item });
-                      }}
-                      className={
-                        activeHashtag.active?.name === item.name
-                          ? "active"
-                          : null
-                      }
-                    >
-                    
-                       <span className="trending-title"> {item.name}
-                       <span className="category">{item.category}</span>
-                       </span>
-                        <span className="circle-icon">{Math.ceil(item.tweet_volume / 1000)}K</span>
-                    
-                      
-                    
-                    </li>
-                  );
-                })}
+              {state?.trends?.map((item, index) => {
+                return (
+                  <li
+                    onClick={() => {
+                      setActiveHashtag({ active: item });
+                      setFlag(false);
+                    }}
+                    className={
+                      activeHashtag.active?.name === item.name ? "active" : null
+                    }
+                  >
+                    <span className="circle-icon">
+                      {Math.ceil(item.tweet_volume / 1000)}K
+                    </span>
+                    {item.name}
+                    <span className="category">{item.category}</span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="trending-twitter-right-area ">
@@ -99,16 +126,7 @@ const DashBoard = () => {
               <div className="top-embed-box-area">
                 <div className="top-embed-box">
                   {console.log(activeHashtag)}
-                  {activeHashtag.active?.ids?.map((item, index) => {
-                    return (
-                      <>
-                        {console.log(item)}
-                        {index < 4 ? (
-                          <TweetContainer id={item} />
-                        ) : null}
-                      </>
-                    );
-                  })}
+                  {flag && activeHashtag.active && activeHashtag.active.ids && <Slider slides={activeHashtag.active.ids} />}
                 </div>
               <div className="loader"><img src="http://www.encephalopathy.or.kr/common/images/loader/ajax-loader/ajax_loader_blue_128.gif"></img></div>
               </div>
