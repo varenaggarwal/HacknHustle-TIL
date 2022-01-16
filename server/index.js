@@ -120,7 +120,7 @@ app.get("/tweets/data/:fileName", (req, res) => {
 
 /* App Listen */
 // Get port
-const port = process.env.port || 5001;
+const port = process.env.port || 5000;
 // Set app to listen on port
 app.listen(port, () => {
   // Show that the server is running
