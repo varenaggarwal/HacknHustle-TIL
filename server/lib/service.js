@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 const { findCategory } = require("./openApiController");
+const { findSentiment } = require("./openApiController");
 const { getRecentTweets } = require("./tweetsController");
 
 const concatTweets2Text = ({ data, query })=>{
@@ -26,18 +27,21 @@ const processAndGather = ({filedata})=>{
         if(trends instanceof Array){
             try {  
                 trends.map(async (trend,index) => {
-                    if(typeof trend === "object" && !trend.category){
+                    if(typeof trend === "object" && !trend.category && !trend.sentiment ){
                         console.time('#####################-------trend'+index);
                         if (trend.text) {
                             const { data: oaiData } = await findCategory({text : trend.text});
+                            const { data: oaiDataSentiment } = await findSentiment({text : trend.text});
                             oaiData && (trend["category"] = oaiData.label);
+                            oaiDataSentiment && (trend["sentiment"] = oaiDataSentiment.label);
                         }
                         else{ 
                             const { data: tweetData } = await getRecentTweets({query:trend.query});
                             const { text ,twtids } = concatTweets2Text({data:tweetData, query:trend.query});
                             const { data: oaiData } = await findCategory({text});
-
+                            const { data: oaiDataSentiment } = await findSentiment({text : trend.text});
                             oaiData && (trend["category"] = oaiData.label);
+                            oaiDataSentiment && (trend["sentiment"] = oaiDataSentiment.label);
                             twtids && (trend["ids"] = twtids);
                             text && (trend["text"] = `${text}`);
                         }

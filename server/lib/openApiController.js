@@ -32,6 +32,26 @@ instanceAxios.defaults.headers.post['Content-Type'] = 'application/json';
     }
 }
 
+const findSentiment = async({text})=>{
+    text = JSON.stringify(text);
+    const raw = JSON.stringify({
+        "file": "file-fHMetiSkb7y0qPY0lwCsh52O",
+        "search_model": "ada",
+        "model": "curie",
+        "max_examples": 3,
+        "query": text
+    });
+    try {
+        console.log(text);
+        const url = "https://api.openai.com/v1/classifications";
+        const response = instanceAxios.post(url , raw);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 module.exports = {
-    findCategory: findCategory
+    findCategory: findCategory,
+    findSentiment: findSentiment
 }
