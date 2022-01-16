@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { getDatafromServer } from "../serverRequest";
 import "./../css/dashboard.css";
 import "./../css/modal.css";
 import CMSEditor from "./CMSEditor.jsx";
@@ -6,7 +7,17 @@ import Header from "./Header.jsx";
 import Modal from "./Modal.jsx";
 
 const DashBoard = () => {
-  const [show , setShow] = React.useState({ show: false });
+  const [show, setShow] = useState({ show: false });
+  const [active, setActive] = useState({ active: false });
+  const [state, setState] = useState({});
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getDatafromServer();
+      setState(data.data[0]);
+    }
+    fetchData();
+  }, []);
 
   const showModal = () => {
     setShow({ show: true });
@@ -38,61 +49,18 @@ const DashBoard = () => {
         <div className="trending-info-sec">
           <div className="trending-twitter-list">
             <ul>
-              <li className="active">
-                <a href="#">
-                  <span>7</span>#YogiWillBeBack
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>5</span>#OnePlus9RT5G
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>5</span>#INDvSA
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>25</span>#HumanOnHotstar
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>5</span>#Modi4Sikhi
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>5</span>#OnePlus9RT5G
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>5</span>#INDvSA
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>25</span>#HumanOnHotstar
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>5</span>#Modi4Sikhi
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>5</span>#INDvSA
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>25</span>#HumanOnHotstar
-                </a>
-              </li>
+              {state.hasOwnProperty("trends") &&
+                state?.trends.map((item, index) => {
+                  return (
+                    <li className={active ? "active" : null}>
+                      <a href="#">
+                        <span>{Math.ceil(item.tweet_volume / 1000)}K</span>
+                        <p>{item.category}</p>
+                        <p>{item.name}</p>
+                      </a>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
           <div className="trending-twitter-right-area ">
