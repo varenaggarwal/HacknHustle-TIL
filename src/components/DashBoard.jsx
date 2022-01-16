@@ -11,6 +11,7 @@ const DashBoard = () => {
   const [show, setShow] = useState({ show: false });
   const [activeHashtag, setActiveHashtag] = useState({ active: null });
   const [state, setState] = useState({});
+  const [flag, setFlag] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -20,6 +21,12 @@ const DashBoard = () => {
     }
     fetchData();
   }, []);
+
+  useEffect(()=> {
+    if(!flag){
+      setFlag(true);
+    }
+  }, [flag]);
 
   const showModal = () => {
     setShow({ show: true });
@@ -56,6 +63,7 @@ const DashBoard = () => {
                   <li
                     onClick={() => {
                       setActiveHashtag({ active: item });
+                      setFlag(false);
                     }}
                     className={
                       activeHashtag.active?.name === item.name ? "active" : null
@@ -93,7 +101,7 @@ const DashBoard = () => {
               <div className="top-embed-box-area">
                 <div className="top-embed-box">
                   {console.log(activeHashtag)}
-                  {activeHashtag.active?.ids?.map((item, index) => {
+                  {flag && activeHashtag?.active?.ids?.map((item, index) => {
                     return (
                       <>{index < 4 ? <TweetContainer id={item} /> : null}</>
                     );
