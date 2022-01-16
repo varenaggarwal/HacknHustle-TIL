@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './../css/dashboard.css';
 import './../css/modal.css';
+import AppWebsiteVisits from "./AppWebsiteVisits";
 import CMSEditor from "./CMSEditor.jsx";
 import Header from './Header.jsx';
 import Modal from './Modal.jsx';
@@ -63,7 +64,8 @@ class Dashboard extends Component {
                           <div className="trending-twitter-right-area ">
                             <div className="trending-twitter-info">
                                 <div className="trending-twitter-graph" >
-                                  <canvas id="myChart"></canvas>
+                                  <AppWebsiteVisits />
+                                  {/* <canvas id="myChart"></canvas> */}
                                 </div>
                                 <div className="trending-twitter-infobox">
                                     <div className="trending-infobox-title">#YogiWillBeBack</div>
