@@ -14,7 +14,7 @@ const {
   saveFile,
 } = require("./lib/service");
 const { findCategory } = require("./lib/openApiController");
-const DIR_DATASET_PATH = "../dataset/";
+const DIR_DATASET_PATH = "dataset/";
 
 app.use(cors())
 app.use(bodyParser.json());

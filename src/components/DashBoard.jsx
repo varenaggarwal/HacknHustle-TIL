@@ -64,9 +64,14 @@ const DashBoard = () => {
                           : null
                       }
                     >
+                    
+                       <span className="trending-title"> {item.name}
+                       <span className="category">{item.category}</span>
+                       </span>
                         <span className="circle-icon">{Math.ceil(item.tweet_volume / 1000)}K</span>
-                          {item.name}
-                        <span className="category">{item.category}</span>
+                    
+                      
+                    
                     </li>
                   );
                 })}
@@ -90,7 +95,7 @@ const DashBoard = () => {
               </div>
             </div>
             <div className="top-embed-sec">
-              <div className="top-embed-heading">Top Embeds</div>
+              {/* <div className="top-embed-heading">Top Embeds</div> */}
               <div className="top-embed-box-area">
                 <div className="top-embed-box">
                   {console.log(activeHashtag)}
@@ -105,7 +110,7 @@ const DashBoard = () => {
                     );
                   })}
                 </div>
-                <div className="top-embed-box"></div>
+              <div className="loader"><img src="http://www.encephalopathy.or.kr/common/images/loader/ajax-loader/ajax_loader_blue_128.gif"></img></div>
               </div>
             </div>
           </div>
