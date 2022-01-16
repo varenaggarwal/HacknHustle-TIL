@@ -19,7 +19,7 @@ const Modal = ({ handleClose, show, children }) => {
     <div className={showHideClassName}>
       <section className="modal-main">
         {children}
-        <button type="button" onClick={handleClose}>
+        {/* <button className="close_modal" type="button" onClick={handleClose}>
           Close
         </button>
         {console.log(state)}
@@ -35,6 +35,10 @@ const Modal = ({ handleClose, show, children }) => {
             );
           })}
           <TweetContainer id={"1482383366607765507"} />
+        </button> */}
+        <div className="close_modal close-icon"  onClick={handleClose}>
+          <span><img src="close.png"></img></span>
+        </div>
       </section>
     </div>
   );
