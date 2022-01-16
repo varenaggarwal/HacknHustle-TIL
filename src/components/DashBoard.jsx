@@ -64,11 +64,9 @@ const DashBoard = () => {
                           : null
                       }
                     >
-                      <a href="#">
-                        <span>{Math.ceil(item.tweet_volume / 1000)}K</span>
-                        <p>{item.category}</p>
-                        <p>{item.name}</p>
-                      </a>
+                        <span className="circle-icon">{Math.ceil(item.tweet_volume / 1000)}K</span>
+                          {item.name}
+                        <span className="category">{item.category}</span>
                     </li>
                   );
                 })}
