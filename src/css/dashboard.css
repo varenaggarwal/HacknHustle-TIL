@@ -13,5 +13,8 @@
     background: -webkit-linear-gradient( 45deg ,#303f9f,#7b1fa2)!important;
     background: linear-gradient( 45deg ,#303f9f,#7b1fa2)!important;
 }
-.twitter-embed {width: 400px; height: 300px; overflow: hidden;}
+.twitter-embed {width: 400px; height: 250px; margin: 0 10px; overflow: hidden;}
 .twitslide {display: flex; justify-content: space-around;}
+button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.makeStyles-button-13.makeStyles-buttonVisible-11.makeStyles-fullHeightHoverButton-10.css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    background: #3f95d3;
+}

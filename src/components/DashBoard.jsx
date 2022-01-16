@@ -105,8 +105,7 @@ const DashBoard = () => {
                     <span className="circle-icon">
                       {Math.ceil(item.tweet_volume / 1000) > 0 ? `${Math.ceil(item.tweet_volume / 1000)} K` : null}
                     </span>
-                    {item.name}
-                    <span className="category">{item.category}</span>
+                   
                   </li>
                 );
               })}
