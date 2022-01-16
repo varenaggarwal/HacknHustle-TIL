@@ -95,15 +95,12 @@ const DashBoard = () => {
                       activeHashtag.active?.name === item.name ? "active" : null
                     }
                   >
-                    {Math.ceil(item.tweet_volume / 1000) > 0 ? (
-                      <span className="circle-icon">
-                        {Math.ceil(item.tweet_volume / 1000) }
-                      </span>
-                    ): null
-
-                    }
-                    <span className="circle-icon">
-                      {Math.ceil(item.tweet_volume / 1000) > 0 ? `${Math.ceil(item.tweet_volume / 1000)} K` : null}
+                   
+                     <span className="trending-title"> {item.name}
+                     <span className="category">{item.category}</span>
+                     </span>
+                     <span className="circle-icon">
+                      {Math.ceil(item.tweet_volume / 1000)}K
                     </span>
                    
                   </li>
