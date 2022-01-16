@@ -1,5 +1,5 @@
-import './../css/modal.css';
 import React from 'react';
+import './../css/modal.css';
 
 const Modal = ({ handleClose, show, children }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
@@ -12,7 +12,7 @@ const Modal = ({ handleClose, show, children }) => {
           Close
         </button> */}
         <div className="close_modal close-icon"  onClick={handleClose}>
-          <span><img src="close-button.png"></img></span>
+          <span><img src="close-button.png" alt=''></img></span>
         </div>
       </section>
     </div>
