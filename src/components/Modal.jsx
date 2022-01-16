@@ -1,8 +1,20 @@
-import './../css/modal.css';
-import React from 'react';
+import "./../css/modal.css";
+import React, { useEffect, useState } from "react";
+import { getDatafromServer } from "../serverRequest";
 
 const Modal = ({ handleClose, show, children }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
+  const [state , setState] = useState({});
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getDatafromServer();
+      // console.log({ data });
+      setState(data.data[0]);
+
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className={showHideClassName}>
@@ -11,6 +23,14 @@ const Modal = ({ handleClose, show, children }) => {
         <button type="button" onClick={handleClose}>
           Close
         </button>
+        {console.log(state)}
+        {state.hasOwnProperty('trends') && state.trends.map((item, index) => {
+          return (
+            <div key={index}>
+              <p>{item.name}</p>
+            </div>
+          );
+        })}
       </section>
     </div>
   );
