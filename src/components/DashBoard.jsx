@@ -94,11 +94,14 @@ const DashBoard = () => {
                       activeHashtag.active?.name === item.name ? "active" : null
                     }
                   >
-                    <span className="circle-icon">
+                   
+                     <span className="trending-title"> {item.name}
+                     <span className="category">{item.category}</span>
+                     </span>
+                     <span className="circle-icon">
                       {Math.ceil(item.tweet_volume / 1000)}K
                     </span>
-                    {item.name}
-                    <span className="category">{item.category}</span>
+                   
                   </li>
                 );
               })}
@@ -113,7 +116,7 @@ const DashBoard = () => {
                 <div className="trending-infobox-title">#YogiWillBeBack</div>
                 <div className="trending-infobox-tweet">
                   <span>Retweets</span>
-                  1.6K
+                    1.6K
                 </div>
                 <div className="trending-infobox-tweet">
                   <span>Growth</span>
