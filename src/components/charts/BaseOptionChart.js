@@ -1,6 +1,7 @@
 // material
 import { GlobalStyles } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
+import React from "react";
 
 // ----------------------------------------------------------------------
 

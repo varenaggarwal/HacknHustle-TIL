@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getDatafromServer } from "../serverRequest";
+import { getDatafromServer } from "../requests/serverRequest";
 import "./../css/dashboard.css";
 import "./../css/modal.css";
-import AppWebsiteVisits from "./AppWebsiteVisits";
 import CMSEditor from "./CMSEditor.jsx";
 import Header from "./Header.jsx";
 import Modal from "./Modal.jsx";
 import TweetContainer from "./TweetContainer";
+import TweetCountChart from "./TweetCountChart";
 
 const DashBoard = () => {
   const [show, setShow] = useState({ show: false });
@@ -40,7 +40,7 @@ const DashBoard = () => {
     </button> */}
 
         <div onClick={showModal}>
-          <img src="twitericon.png" className=""></img>
+          <img src="twitericon.png" alt=""></img>
           <span className="blink"></span>
         </div>
       </div>
@@ -48,7 +48,7 @@ const DashBoard = () => {
         <CMSEditor />
       </div>
       <Modal show={show.show} handleClose={hideModal}>
-        <div className="modal-header">Whats Trending Twitter</div>
+        <div className="modal-header">Whats Trending in Twitter</div>
         <div className="trending-info-sec">
           <div className="trending-twitter-list">
             <ul>
@@ -76,7 +76,7 @@ const DashBoard = () => {
           <div className="trending-twitter-right-area ">
             <div className="trending-twitter-info">
               <div className="trending-twitter-graph">
-                <AppWebsiteVisits />
+                { activeHashtag.active ? <TweetCountChart tag = {activeHashtag.active} query={activeHashtag.active.query}/> : ""}
                 {/* <canvas id="myChart"></canvas> */}
               </div>
               <div className="trending-twitter-infobox">
