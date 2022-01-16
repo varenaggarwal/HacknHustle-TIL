@@ -40,7 +40,7 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "nodemon ./server",
-    "dev": "concurrently \"npm run start\" \"npm run server\"",
+    "stage": "concurrently \"npm run start\" \"npm run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

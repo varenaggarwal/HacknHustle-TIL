@@ -1,4 +1,4 @@
-import { Box, Card } from "@mui/material";
+import { Box, Card ,CardHeader } from "@mui/material";
 import { merge } from "lodash";
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
@@ -26,7 +26,7 @@ export default function TweetCountChart({tag ,query}) {
     async function fetchData() {
       const resp = await getTweetCounts({ query: query });
       setchartData([{
-        name: tag.query,
+        name: tag.name,
         type: "line",
         data: resp.data,
       }]);
@@ -63,7 +63,7 @@ export default function TweetCountChart({tag ,query}) {
 
   return (
     <Card>
-      {/* <CardHeader title="Website Visits" subheader="(+43%) than last year" /> */}
+      <CardHeader title="Tweets per hour" />
       <Box sx={{ p: 3, pb: 1 }} dir="ltr">
         <ReactApexChart
           type="line"

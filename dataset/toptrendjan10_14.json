@@ -8,6 +8,7 @@
         "query": "%23KamalKhan",
         "tweet_volume": 32270,
         "category": "Entertainment",
+        "sentiment": "Negative",
         "ids": [
           "1482385596488290310",
           "1482385518050840576",
@@ -29,6 +30,7 @@
         "query": "%23YogiWillBeBack",
         "tweet_volume": 74568,
         "category": "Politics",
+        "sentiment": "Positive",
         "ids": [
           "1482384573875257351",
           "1482384539334938624",
@@ -58,6 +60,7 @@
         "query": "%23AnnaatthePongalOnSunTv",
         "tweet_volume": 23798,
         "category": "Entertainment",
+        "sentiment": "Positive",
         "ids": [
           "1482385648849883137",
           "1482385608521650181",
@@ -79,6 +82,7 @@
         "query": "%23YoursBestOST2021",
         "tweet_volume": 47507,
         "category": "Entertainment",
+        "sentiment": "Neutral",
         "ids": [
           "1482385629363253254",
           "1482385551089352706",
@@ -107,6 +111,7 @@
         "query": "%22SavePunjb+Frm+ConversionMafia%22",
         "tweet_volume": null,
         "category": "Politics",
+        "sentiment": "Negative",
         "ids": [
           "1482356392434761735",
           "1482338827662348289",

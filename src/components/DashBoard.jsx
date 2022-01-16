@@ -95,8 +95,15 @@ const DashBoard = () => {
                       activeHashtag.active?.name === item.name ? "active" : null
                     }
                   >
+                    {Math.ceil(item.tweet_volume / 1000) > 0 ? (
+                      <span className="circle-icon">
+                        {Math.ceil(item.tweet_volume / 1000) }
+                      </span>
+                    ): null
+
+                    }
                     <span className="circle-icon">
-                      {Math.ceil(item.tweet_volume / 1000)}K
+                      {Math.ceil(item.tweet_volume / 1000) > 0 ? `${Math.ceil(item.tweet_volume / 1000)} K` : null}
                     </span>
                     {item.name}
                     <span className="category">{item.category}</span>
@@ -112,14 +119,14 @@ const DashBoard = () => {
                 {/* <canvas id="myChart"></canvas> */}
               </div>
               <div className="trending-twitter-infobox">
-                <div className="trending-infobox-title">#YogiWillBeBack</div>
+                <div className="trending-infobox-title">{activeHashtag.active?.name}</div>
                 <div className="trending-infobox-tweet">
                   <span>Retweets</span>
-                  1.6K
+                  {Math.ceil(activeHashtag.active?.tweet_volume / 1000)}K
                 </div>
                 <div className="trending-infobox-tweet">
-                  <span>Growth</span>
-                  65%
+                  <span>Sentiment</span>
+                  {activeHashtag.active?.sentiment ? activeHashtag.active?.sentiment : "Unknown" }
                 </div>
               </div>
             </div>
@@ -130,7 +137,7 @@ const DashBoard = () => {
                   {console.log(activeHashtag)}
                   {flag && activeHashtag.active && activeHashtag.active.ids && <Slider slides={activeHashtag.active.ids} />}
                 </div>
-              <div className="loader"><img src="http://www.encephalopathy.or.kr/common/images/loader/ajax-loader/ajax_loader_blue_128.gif"></img></div>
+               {<div className="loader"><img src="http://www.encephalopathy.or.kr/common/images/loader/ajax-loader/ajax_loader_blue_128.gif"></img></div>}
               </div>
             </div>
           </div>

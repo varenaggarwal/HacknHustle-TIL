@@ -200,7 +200,7 @@ nav .nav-wrapper{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 50%;
+    left: 40%;
 }
 .loader  img {
     width: 45px;
