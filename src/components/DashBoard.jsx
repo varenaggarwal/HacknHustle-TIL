@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Carousel from 'react-material-ui-carousel';
 import { getDatafromServer } from "../serverRequest";
 import "./../css/dashboard.css";
 import "./../css/modal.css";
@@ -28,6 +29,30 @@ const DashBoard = () => {
   const hideModal = () => {
     setShow({ show: false });
   };
+
+  const Slider = (slides) => {
+    const dataArr = slides.slides;
+    console.log(dataArr.length);
+    const sliderItems = dataArr.length > 3 ? 3 : dataArr.length;
+    console.log(sliderItems);
+    const items = [];
+    for (let i = 0; i < dataArr.length; i += sliderItems) {
+      if (i % sliderItems === 0) {
+        items.push(
+          <div className="twitslide">
+            {dataArr.slice(i, i + sliderItems).map((da, index) => {
+              return <TweetContainer id={da} />;
+            })}
+          </div>
+        );
+      }
+    }
+    return (
+      <Carousel animation="slide" autoPlay={false} cycleNavigation timeout={300}>
+        {items}
+      </Carousel>
+    );
+  }
 
   return (
     <main>
@@ -94,16 +119,7 @@ const DashBoard = () => {
               <div className="top-embed-box-area">
                 <div className="top-embed-box">
                   {console.log(activeHashtag)}
-                  {activeHashtag.active?.ids?.map((item, index) => {
-                    return (
-                      <>
-                        {console.log(item)}
-                        {index < 4 ? (
-                          <TweetContainer id={item} />
-                        ) : null}
-                      </>
-                    );
-                  })}
+                  {activeHashtag.active && activeHashtag.active.ids && <Slider slides={activeHashtag.active.ids} />}
                 </div>
                 <div className="top-embed-box"></div>
               </div>
