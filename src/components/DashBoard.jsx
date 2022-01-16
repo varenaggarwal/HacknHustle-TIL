@@ -33,7 +33,7 @@ class Dashboard extends Component {
                   Open<img src="open-icon.png" ></img>
                 </button> */}
                  
-                 <div  onClick={this.showModal}>
+                 <div className="twiter-open-icon"  onClick={this.showModal}>
                    <img src="twitericon.png" className=""></img>
                    <span className="blink"></span>
                    </div>
@@ -47,17 +47,17 @@ class Dashboard extends Component {
                         <div className="trending-info-sec"> 
                           <div className="trending-twitter-list">
                             <ul>
-                              <li className="active"><a href="#"><span>7</span>#YogiWillBeBack</a></li>
-                              <li ><a href="#"><span>5</span>#OnePlus9RT5G</a></li>
-                              <li><a href="#"><span>5</span>#INDvSA</a></li>
-                              <li><a href="#"><span>25</span>#HumanOnHotstar</a></li>
-                              <li><a href="#"><span>5</span>#Modi4Sikhi</a></li>
-                              <li ><a href="#"><span>5</span>#OnePlus9RT5G</a></li>
-                              <li><a href="#"><span>5</span>#INDvSA</a></li>
-                              <li><a href="#"><span>25</span>#HumanOnHotstar</a></li>
-                              <li><a href="#"><span>5</span>#Modi4Sikhi</a></li>
-                              <li><a href="#"><span>5</span>#INDvSA</a></li>
-                              <li><a href="#"><span>25</span>#HumanOnHotstar</a></li>
+                              <li className="active"><span className="circle-icon">7</span>#YogiWillBeBack <span className="category">Poltics</span></li>
+                              <li ><span className="circle-icon">5</span>#OnePlus9RT5G <span className="category">Entertainment</span></li>
+                              <li><span className="circle-icon">5</span>#INDvSA<span className="category">Sports</span></li>
+                              <li><span className="circle-icon">25</span>#HumanOnHotstar<span className="category">Entertainment</span></li>
+                              <li><span className="circle-icon">5</span>#Modi4Sikhi<span className="category">Poltics</span></li>
+                              <li ><span className="circle-icon"> 5</span>#OnePlus9RT5G<span className="category">Entertainment</span></li>
+                              <li><span className="circle-icon">5</span>#INDvSA<span className="category">Sports</span></li>
+                              <li><span className="circle-icon">25</span>#HumanOnHotstar<span className="category">Entertainment</span></li>
+                              <li><span className="circle-icon">5</span>#Modi4Sikhi<span className="category">Poltics</span></li>
+                              <li><span className="circle-icon"> 5</span>#INDvSA<span className="category">Sports</span></li>
+                              
                             </ul>
                           </div>
                           <div className="trending-twitter-right-area ">
